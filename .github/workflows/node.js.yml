@@ -17,7 +17,7 @@ jobs:
       with:
         node-version: 18
     - name: change directory
-      run: cd bicyclebackend
+      run: cd ~/bicyclebackend
 
     - name: Install dependencies
       run: npm install
