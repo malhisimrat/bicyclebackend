@@ -1,32 +1,27 @@
-name: Node.js CI/CD
+name: Deploy Node App with PM2
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: self-hosted
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Pull latest code
+        run: |
+          cd ~/bicyclebackend
+          git reset --hard
+          git pull origin main
 
-    - name: Use Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-    - name: change directory
-      run: cd ~/bicyclebackend
+      - name: Install dependencies
+        run: |
+          cd ~/bicyclebackend
+          npm install
 
-    - name: Install dependencies
-      run: npm install
-
-    # - name: Run tests
-    #   run: npm test  # Skip or modify this if you don't have tests
-
-    # - name: Build
-    #   run: npm run build  # Optional
-
-    - name: Start app or deploy
-      run: pm2 restart backend || pm2 start index.js --name "backend"  # customize if needed
+      - name: Restart PM2
+        run: |
+          pm2 restart bicycleapp || pm2 start index.js --name bicycleapp
+          pm2 save
