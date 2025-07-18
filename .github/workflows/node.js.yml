@@ -29,6 +29,4 @@ jobs:
     #   run: npm run build  # Optional
 
     - name: Start app or deploy
-      run: |
-        pm2 stop app || true
-        pm2 start index.js --name "bicyclebackend"  # customize if needed
+      run: pm2 start index.js --name "bicyclebackend"  # customize if needed
