@@ -1,0 +1,32 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test  # Skip or modify this if you don't have tests
+
+    - name: Build
+      run: npm run build  # Optional
+
+    - name: Start app or deploy
+      run: |
+        pm2 stop app || true
+        pm2 start index.js --name "app"  # customize if needed
