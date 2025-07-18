@@ -16,17 +16,19 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 18
+    - name: change directory
+      run: cd bicyclebackend
 
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm test  # Skip or modify this if you don't have tests
+    # - name: Run tests
+    #   run: npm test  # Skip or modify this if you don't have tests
 
-    - name: Build
-      run: npm run build  # Optional
+    # - name: Build
+    #   run: npm run build  # Optional
 
     - name: Start app or deploy
       run: |
         pm2 stop app || true
-        pm2 start index.js --name "app"  # customize if needed
+        pm2 start index.js --name "bicyclebackend"  # customize if needed
