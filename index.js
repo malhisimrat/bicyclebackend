@@ -14,6 +14,9 @@ app.use(express.urlencoded({ limit: "50mb", extended: false, parameterLimit: 500
 app.get('/', (req, res) => {
     res.send('Welcome to Bicycle Renter/Hirer Server 3rd take another try')
 })
+app.get('/about', (req, res) => {
+    res.send('Welcome to about page demo one')
+})
 
 app.use('/api', apiRoutes)
 
