@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to Bicycle Renter/Hirer Server 3rd take another try')
 })
 app.get('/about', (req, res) => {
-    res.send('Welcome to about page demo two')
+    res.send('Welcome to about page demo three')
 })
 
 app.use('/api', apiRoutes)
